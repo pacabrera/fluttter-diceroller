@@ -1,3 +1,5 @@
+import 'dart:ui' as prefix0;
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -25,6 +27,38 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void rollDice() {
+    var random = (1 + Random().nextInt(6));
+    AssetImage newImage;
+    switch (random) {
+      case 1:
+        newImage = one;
+        break;
+      case 2:
+        newImage = two;
+        break;
+      case 3:
+        newImage = three;
+        break;
+      case 4:
+        newImage = four;
+        break;
+      case 5:
+        newImage = five;
+        break;
+      case 6:
+        newImage = six;
+        break;
+
+      default:
+    }
+    setState(() {
+      diceImage = newImage;
+    });
+  }
+
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +73,20 @@ class _HomePageState extends State<HomePage> {
                 image: diceImage,
                 height: 200,
                 width: 200,
-              )
+              ),
+              Container(
+                child: RaisedButton(
+                  color: Colors.yellow,
+                  padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  child: Text(
+                    'Roll the Dice',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: rollDice,
+                ),
+              ),
             ],
           ),
         ),
